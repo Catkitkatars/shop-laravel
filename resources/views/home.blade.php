@@ -11,42 +11,29 @@
         @include('menu')
         <div class="products-container mt-2">
             <div class="d-flex align-content-stretch flex-wrap" style="justify-content:start; align-items:center;">
- 
-                <a href=# class="card text-white bg-dark m-3" style="max-width: 18rem;">
-                    <div class="card-header">
-                        <img src="/img/1.png" alt="pic" class="img-thumbnail">
-                    </div>
-                    <div class="card-body">
-                        <h5 style="text-align:center;" class="card-title">Dark card title</h5>
-                    </div>
-                </a>
 
-                <a href=# class="card text-white bg-dark m-3" style="max-width: 18rem;">
+            @foreach ($products as $product)
+                <div href='productCard?id={{ $product->id }}' class="card text-white bg-dark m-3" style="max-width: 18rem;">
                     <div class="card-header">
-                        <img src="/img/1.png" alt="pic" class="img-thumbnail">
+                        <a href='product_card?id={{ $product->id }}'>
+                            <img src="/img/{{ $product->title }}.png" alt="pic" class="img-thumbnail">
+                        </a> 
                     </div>
                     <div class="card-body">
-                        <h5 style="text-align:center;" class="card-title">Dark card title</h5>
+                        <h5 style="text-align:center;" class="card-title">
+                            <a href='product_card?id={{ $product->id }}'>
+                                {{ $product->title }}
+                            </a> 
+                        </h5>
+                        <p>{{ $product->description }}</p>
+                        <p>Price: {{ $product->price }}</p>
                     </div>
-                </a>
-
-                <a href=# class="card text-white bg-dark m-3" style="max-width: 18rem;">
-                    <div class="card-header">
-                        <img src="/img/1.png" alt="pic" class="img-thumbnail">
-                    </div>
-                    <div class="card-body">
-                        <h5 style="text-align:center;" class="card-title">Dark card title</h5>
-                    </div>
-                </a>
-
-                <a href=# class="card text-white bg-dark m-3" style="max-width: 18rem;">
-                    <div class="card-header">
-                        <img src="/img/1.png" alt="pic" class="img-thumbnail">
-                    </div>
-                    <div class="card-body">
-                        <h5 style="text-align:center;" class="card-title">Dark card title</h5>
-                    </div>
-                </a>    
+                    <a href="/addCart?id={{ $product->id }}">
+                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Add at cart</button>
+                    </a>
+                </div> 
+            @endforeach
+                  
                 
             </div>
         </div>
