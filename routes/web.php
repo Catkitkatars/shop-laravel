@@ -5,6 +5,8 @@ use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\ProductController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -19,6 +21,9 @@ use App\Http\Controllers\CartController;
 
 Route::get('/', [HomeController::class, 'home']);
 Route::get('/logout', [LoginController::class, 'logout']);
+
+//product
+Route::get('/product', [ProductController::class, 'productPage']);
 
 // cart
 Route::get('/cart', [CartController::class, 'showCart'])->name('cart');

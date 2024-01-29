@@ -21,7 +21,7 @@
                     </div>
                     <div class="card-body">
                         <h5 style="text-align:center;" class="card-title">
-                            <a href='product_card?id={{ $product->id }}'>
+                            <a href='product?id={{ $product->id }}'>
                                 {{ $product->title }}
                             </a> 
                         </h5>
