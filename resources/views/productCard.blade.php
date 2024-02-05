@@ -25,16 +25,14 @@
                     <li>
                         <p>{{ $product->price }}</p>
                     </li>
+                    <li>
+                        <p style="display:inline-block">Add to cart</p><br>
+                        <a href="/addCart?id={{ $product->id }}">
+                            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Add at cart</button>
+                        </a>
+                    </li>
                 </ul>
-            </div>
-            
-            <br><br>
-            <p style="display:inline-block">Add to cart</p><br>
-            <a href="/addCart?id={{ $product->id }}">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Add at cart</button>
-            </a>
-                  
-                
+            </div>                
             </div>
         </div>
 

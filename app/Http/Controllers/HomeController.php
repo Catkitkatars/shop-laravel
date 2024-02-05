@@ -18,14 +18,12 @@ class HomeController extends Controller
         if (auth()->check()) {
             $user = auth()->user();
             return view('home', [
-                'user' => $user, 
                 'products' => $products,
-                'cart' => $cartElems,
             ]);
         } 
         else 
         {
-            return view('home', ['products' => $products, 'cart' => $cartElems,]);
+            return view('home', ['products' => $products]);
         }
     }
 

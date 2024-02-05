@@ -30,26 +30,13 @@
                 </svg>
             </a>
 
-            <x-CartComponent />
-
-                
+            <x-CartComponent />    
         </li>
         
 
-        @if(isset($user))
-            <p style="color: #fff; margin: auto 10px">{{ $user->name }}</p>
-            <form action="/logout" method="get">
-                @csrf
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Logout</button>
-            </form>
-        @else
-            <li class="nav-item">
-                <a class="nav-link" href="/register">Sign Up</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/login">Sign In</a>
-            </li>
-        @endif
+        <x-AuthComponent /> 
+
+        
 
         
     </ul>
