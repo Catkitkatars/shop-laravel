@@ -10,15 +10,17 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <th scope="row">1</th>
-                <td>12-12-24</td>
-                <td>444<span> rub</span></td>
-                <td>Delivered</td>
-                <td>
-                    <button class="btn btn-outline-success my-2 my-sm-0">View</button>
-                </td>
-            </tr>
+            @foreach ($userOrders as $order)
+                <tr>
+                    <th scope="row">{{ $order['id'] }}</th>
+                    <td>{{ $order['created_at'] }}</td>
+                    <td>{{ $order['amount'] }}<span> rub</span></td>
+                    <td>{{ $order['status'] }}</td>
+                    <td>
+                        <a href="/orderDetails?id={{ $order['id'] }}" class="btn btn-outline-success my-2 my-sm-0">View</a>
+                    </td>
+                </tr>
+            @endforeach
         </tbody>
     </table>
 </div>

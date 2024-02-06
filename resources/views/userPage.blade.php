@@ -14,11 +14,7 @@
             <ul>
                 <li>Name: {{ $user->name }} </li>
                 <li>Email: {{ $user->email }} </li>
-                <li>Orders: __Quantity Orders__ 
-                    <span>
-                        <a class="btn btn-outline-success my-2 my-sm-0" href="/orders?{{ $user->id }}">Veiw orders</a>
-                    </span>
-                </li>
+                <li>Orders:</li>
             </ul>
             <x-OrdersTableInUserPage /> 
     </div>

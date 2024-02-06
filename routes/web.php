@@ -7,6 +7,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserPageController;
+use App\Http\Controllers\OrderController;
 
 
 /*
@@ -46,4 +47,6 @@ Route::post('/login', [LoginController::class, 'login'])->name('login');
 //checkAuth in userPage
 Route::middleware(['auth'])->group(function(){
     Route::get('/userPage', [UserPageController::class, 'showUserPage']);
+    Route::get('/order', [OrderController::class, 'createOrder']);
+    Route::get('/orderDetails', [OrderController::class, 'showOrderDetails']);
 });

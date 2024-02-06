@@ -5,12 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Inventory_balances extends Model
+class OrdersItem extends Model
 {
     use HasFactory;
 
+    protected $table = 'ordersItem';
 
-    protected $table = 'stock';
-
-    protected $fillable = ['productId', 'stockBalance']; 
+    protected $fillable = ['orderId', 'product', 'quantity', 'priceForOne'];
 }

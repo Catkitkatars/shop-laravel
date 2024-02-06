@@ -33,12 +33,18 @@ class CartController extends Controller
         $cartItems = Session::get('cart');
         $totalPrice = 0;
 
-        foreach($cartItems as $item) {
+        if(isset($cartItems)) {
+            foreach($cartItems as $item) {
 
-            $totalPrice += $item['price'] * $item['quantity'];
+                $totalPrice += $item['price'] * $item['quantity'];
+            }
         }
     
-        return view('cart', ['cartItems' => $cartItems, 'cart' => $cartItems, 'total' => $totalPrice]);
+        return view('cart', [
+            'cartItems' => $cartItems, 
+            'cart' => $cartItems, 
+            'total' => $totalPrice
+        ]);
     }
 
     public function cartElemDel(Request $request) {

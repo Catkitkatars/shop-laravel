@@ -5,6 +5,8 @@ namespace App\View\Components;
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
+use App\Models\Order;
+use App\Models\OrdersItem;
 
 class OrdersTableInUserPage extends Component
 {
@@ -13,7 +15,7 @@ class OrdersTableInUserPage extends Component
      */
     public function __construct()
     {
-        //
+        $this->userOrders = Order::where('userId', request('id'))->get();
     }
 
     /**
@@ -21,6 +23,6 @@ class OrdersTableInUserPage extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.orders-table-in-user-page');
+        return view('components.orders-table-in-user-page', ["userOrders" => $this->userOrders, ]);
     }
 }
