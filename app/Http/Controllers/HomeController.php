@@ -4,27 +4,24 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Products;
+use App\Models\Stock;
 use Session;
 
 class HomeController extends Controller
 {
 
     public function home() {
-
-        $products = Products::all();
         $cartElems = Session::get('cart');
 
+        $stock = Stock::select('productId', 'stockBalance')
+            ->get();
 
-        if (auth()->check()) {
-            $user = auth()->user();
-            return view('home', [
-                'products' => $products,
-            ]);
-        } 
-        else 
-        {
-            return view('home', ['products' => $products]);
-        }
+        $productsWithStock = Products::join('stock', 'products.id', '=', 'stock.productId')
+            ->select('products.*', 'stock.stockBalance')
+            ->get();
+
+
+        return view('home', ['products' => $productsWithStock]);
     }
 
 }

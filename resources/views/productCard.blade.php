@@ -17,20 +17,26 @@
             <div >
                 <ul>
                     <li>
-                        <h1>{{ $product->title }}</h1>
+                        <h4>Name: <u style="text-transform: uppercase;">{{ $product->title }}</u></h4>
                     </li>
                     <li>
-                        <p>{{ $product->description }}</p>
+                        <p>Description: <u>{{ $product->description }}</u></p>
                     </li>
                     <li>
-                        <p>{{ $product->price }}</p>
+                        <p>Price: <u>{{ $product->price }}</u></p>
                     </li>
-                    <li>
-                        <p style="display:inline-block">Add to cart</p><br>
-                        <a href="/addCart?id={{ $product->id }}">
-                            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Add at cart</button>
-                        </a>
-                    </li>
+                    @if($stock > 0)
+                        <li>
+                            <p style="display:inline-block">Add to cart</p><br>
+                            <a href="/addCart?id={{ $product->id }}">
+                                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Add at cart</button>
+                            </a>
+                        </li>
+                    @elseif($stock <= 0) 
+                        <li>
+                            <p style="Color: #dc3545">Out of stock</p>
+                        </li>
+                    @endif
                 </ul>
             </div>                
             </div>

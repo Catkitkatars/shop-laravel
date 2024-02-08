@@ -36,7 +36,9 @@
                                     class="img-fluid rounded-3" alt="Cotton T-shirt">
                                 </div>
                                 <div class="col-md-3 col-lg-3 col-xl-3">
-                                    <p class="lead fw-normal mb-2">{{ $item['title'] }}</p>
+                                    <p style="text-transform: uppercase;" class="lead fw-normal mb-2">
+                                        <a href="product?id={{ $productId }}">{{ $item['title'] }}</a>
+                                    </p>
                                     <p>{{ $item['description'] }}</p>
                                 </div>
                                 <div class="qty mt-5">
@@ -59,6 +61,14 @@
                                 </div>
                                 </div>
                             </div>
+                            @if($item['stock'] < $item['quantity']) 
+                                <div style="background-color: #dc3545; color: white;">
+                                    <p>Sorry, product <u style="text-transform: uppercase;">{{  $item['title'] }}</u> is over.</p>
+                                    @if($item['stock'] > 0)
+                                        <p>You can buy <u> {{ $item['stock'] }} </u></p>
+                                    @endif 
+                                </div>
+                            @endif
                         </div>
                     </li>
                     @endforeach

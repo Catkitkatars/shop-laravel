@@ -13,6 +13,9 @@
             <div class="d-flex align-content-stretch flex-wrap" style="justify-content:start; align-items:center;">
 
             @foreach ($products as $product)
+                @if($product->stockBalance <= 0) 
+                    @continue
+                @endif
                 <div href='productCard?id={{ $product->id }}' class="card text-white bg-dark m-3" style="max-width: 18rem;">
                     <div class="card-header">
                         <a href='product_card?id={{ $product->id }}'>
@@ -21,16 +24,22 @@
                     </div>
                     <div class="card-body">
                         <h5 style="text-align:center;" class="card-title">
-                            <a href='product?id={{ $product->id }}'>
+                            <a style="text-transform: uppercase;" href='product?id={{ $product->id }}'>
                                 {{ $product->title }}
                             </a> 
                         </h5>
                         <p>{{ $product->description }}</p>
                         <p>Price: {{ $product->price }}</p>
                     </div>
-                    <a href="/addCart?id={{ $product->id }}">
-                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Add at cart</button>
-                    </a>
+                    <div style="display:flex; justify-content: space-between; padding: 1em">
+                        <a href="/addCart?id={{ $product->id }}">
+                            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Add at cart</button>
+                        </a>
+                        <div>
+                            <p>Stock: <span> {{ $product->stockBalance }} </span></p>
+                        </div>
+                    </div>
+                    
                 </div> 
             @endforeach
                   

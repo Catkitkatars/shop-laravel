@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Products;
+use App\Models\Stock;
 use Session;
 
 class CartController extends Controller
@@ -13,13 +14,15 @@ class CartController extends Controller
         $productId = request('id');
 
         $products = Products::find($productId);
+        $stock = Stock::find($productId);
 
         $cart = Session::get('cart', []);
         $cart[$productId] = [
             'title' => $products['title'],
             'description' => $products['description'],
             'price' => $products['price'],
-            'quantity' => 1, 
+            'quantity' => 1,
+            'stock' => $stock['stockBalance'],
         ];
         Session::put('cart', $cart);
 
@@ -28,17 +31,18 @@ class CartController extends Controller
         return redirect($previousUrl);
     }
 
-    public function showCart()
+    public function showCart($outOfStock = null)
     {
         $cartItems = Session::get('cart');
         $totalPrice = 0;
 
         if(isset($cartItems)) {
             foreach($cartItems as $item) {
-
                 $totalPrice += $item['price'] * $item['quantity'];
             }
         }
+
+        // dd($cartItems);
     
         return view('cart', [
             'cartItems' => $cartItems, 

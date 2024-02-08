@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('productId');
             $table->integer('stockBalance');
+            $table->timestamps(); 
         });
     }
 
